@@ -5,8 +5,7 @@ from scipy.optimize import curve_fit
 def gaussfit(x, y, double=False, graph=False, quiet=False):
 	"""
 	Single or double gaussian fitting routine
-	Written by Dan Nagasawa, and adapted by Peter Chi for PDP2017
-	V1.4 for scipy 0.19
+	V1.5 for scipy 0.19
 
 	Parameters:
 	x: array of x values to be fit
@@ -43,7 +42,7 @@ def gaussfit(x, y, double=False, graph=False, quiet=False):
 			return  I*np.exp(-(x-lambda_c)**2.0/(2.0*(fwhm / (2.0 * np.sqrt(2.0 * np.log(2.0))))**2.0))+I*np.exp(-(x-lambda_c-R)** 2.0/(2.0*(fwhm / (2.0 * np.sqrt(2.0 * np.log(2.0))))**2.0))+b
 		# Set parameter bounds and run optimization
 		parambounds=([0.,peak1-200,.1,-30,0.],[np.inf,peak1+200,np.inf,30,np.inf])
-		popt_double,pcov_double = curve_fit(double_gaussian_fit, x, y, p0=[intensity1, peak1+peaksep, FWHM1*.5, peaksep, bkg_counts], max_nfev=max_fit_repeats,bounds=parambounds)
+		popt_double,pcov_double = curve_fit(double_gaussian_fit, x, y, p0=[intensity1, peak1-peaksep, FWHM1*.5, peaksep, bkg_counts], max_nfev=max_fit_repeats,bounds=parambounds)
 		# Double Gaussian Chi2
 		chi2_double = sum(((y - double_gaussian_fit(x,popt_double[0],popt_double[1],popt_double[2],popt_double[3],popt_double[4]))**2)/ sig_noise**2)  / (len(y) - 5)
 		# Equivalent width
