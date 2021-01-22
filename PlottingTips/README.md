@@ -1,4 +1,4 @@
-Contains two plotting tip notebooks
+Contains two notebooks for plotting tips
 
 plotting_practices.ipynb is standalone
 
