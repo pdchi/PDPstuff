@@ -58,6 +58,7 @@ def gaussfit(x, y, double=False, graph=False, quiet=False):
 		if not quiet:
 			print('Fit of double Gaussian, with chi2 of '+str(chi2_double))
 			print('Outputs: Peak1 intensity, Peak1 location, FWHM, Relative Sep, Continuum, Equivalent width')
+		
 		# Optional graphical output
 		if graph:
 			plt.clf()
